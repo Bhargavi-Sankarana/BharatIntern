@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio Website</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a7be1d64c3.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="logo.jpeg" class="logo">
+                <ul>
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About </a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-text">
+                <p>Web Developer</p>
+                <h3>Hi, I'm <span>Bhargavi</span><br>from Vijayawada.</h3>
+            </div>
+        </div>
+    </div>
+   <!----------------about---------------->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="suzuka.webp" height=600px>
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1><br><br>
+                    <p><font color="black" size="5">Hi,I'm Bhargavi Sankarana from Vijayawada.<br><br></font><font color="black">Presently, I am persuing Btech 3rd year in Dhanekula Institute of Engineering and  Technology in the stream of Computer Science and Engineering.
+                        Currently, I have been working on the project given by TechnoHacks-EduTech on the domain of Web Development.<br><br>I am very much passionate about learning new technologies .
+                        </font>
+                    </p>
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills')"><font color="black">Skills</p>
+                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                        <p class="tab-links" onclick="opentab('education')">Education</font></p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span><b>Web Development</b></span><br></li>
+                            <li><span><b>Technical Skills</b></span><br><font color="black">
+                                <ol type="A">
+                                    <li>C</li>
+                                    <li>C++</li>
+                                    <li>Basics of Python</li>
+                                    <li>Basics of Java</li>
+                                </ol>
+                            </font></li>
+                            <li><span><b>Communication Skills</b></span></li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span><b>Fresher</b></span><br></li>
+                    </div>
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span><b>Schooling: </b></span><br><font color="black">At Mahita E.M High School</font></li>
+                            <li><span><b>Intermediate: </b></span><br><font color="black">At Narayana Junior College</font></li>
+                            <li><span><b>Currently Persuing: </b></span><font color="black">Btech-3rd year(CSE) at Dhanekula Institute of Engineering and Technology. </font></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!----------------contact------------------>
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fa-solid fa-paper-plane"></i><font color="black">contact@example.com</font></p>
+                    <p><i class="fa-solid fa-phone"></i><font color="black">1289368923</font></p>
+                    <div class="social-icons">
+                        <a href="https://web.whatsapp.com/"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://in.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://in.linkedin.com/"><i class="fa-brands fa-linkedin"></i></a>
+
+                    </div><br><br>
+                    <a href="resume.pdf" class="button">Download Resume</a>
+                </div>
+                <div class="contact-right">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="Email" placeholder="Your Email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="button">Submit</button>
+                    </form>
+                    <span id="msg"></span>
+                </div>
+
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright &copy; Made by Me<i class="fa-solid fa-heart"></i></p>
+        </div>
+    </div>
+    <script>
+
+        var tablinks=document.getElementsByClassName("tab-links");
+        var tabcontents=document.getElementsByClassName("tab-contents");
+
+        function opentab(tabname){
+            for(tablink of tablinks){
+                tablink.classList.remove("active-link");
+            }
+            for(tabcontent of tabcontents){
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+    </script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxukSyG_QSZ-NFy7y9loJf8RuuHPDWRoanou8BR0fxg04Irak6jyyAVdDO2XVKjusLm/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg=document.getElementById("msg")
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML="Message sent successfully";
+                setTimeout(function(){
+                    msg.innerHTML = ""
+                },5000)
+                form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+      
+</body>
+</html>
